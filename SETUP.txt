@@ -1,0 +1,4 @@
+1. Создай Secret ADMITAD_FEED_URL в GitHub.
+2. Вставь полную ссылку фида Admitad.
+3. Вкладка Actions -> Enable.
+4. Запусти workflow 'Update products' вручную один раз.
