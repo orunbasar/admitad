@@ -59,6 +59,7 @@ https.get(url, (res) => {
             );
 
             console.log("Сохранено товаров:", products.length);
+            console.log(products.slice(0, 3));
 
         });
 
