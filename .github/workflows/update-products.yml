@@ -1,15 +1,16 @@
 name: Update products
 
 on:
-  push:
-    branches:
-      - main
-
   workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
 
 jobs:
   update:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -18,5 +19,16 @@ jobs:
         with:
           node-version: 20
 
-      - name: Test
-        run: echo "GitHub Actions работают!"
+      - run: npm install
+
+      - run: node scripts/update-products.js
+        env:
+          ADMITAD_FEED_URL: ${{ secrets.ADMITAD_FEED_URL }}
+
+      - name: Commit changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add products.json
+          git diff --cached --quiet || git commit -m "Update products"
+          git push
