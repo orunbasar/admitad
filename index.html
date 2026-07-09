@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LinkMarket - партнерская витрина</title>
+    <meta name="description" content="Подборка товаров из партнерских программ: электроника, дом, красота, одежда и полезные находки." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="LinkMarket">
+        <span class="brand-mark">LM</span>
+        <span>LinkMarket</span>
+      </a>
+      <nav class="top-nav" aria-label="Основная навигация">
+        <a href="#catalog">Каталог</a>
+        <a href="#popular">Подборки</a>
+        <a href="#disclosure">О проекте</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Партнерская витрина</p>
+          <h1>LinkMarket</h1>
+          <p>Товары на каждый день: техника, дом, стиль, уход и полезные мелочи. Выбирайте подборки и переходите в магазин по партнерской ссылке.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#catalog">Смотреть товары</a>
+            <a class="button secondary" href="#popular">Популярное</a>
+          </div>
+        </div>
+        <div class="hero-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1100&q=80" alt="" />
+        </div>
+      </section>
+
+      <section class="strip" id="popular" aria-label="Подборки">
+        <article><span>01</span><strong>Хиты недели</strong><p>Самые заметные предложения из разных категорий.</p></article>
+        <article><span>02</span><strong>Для дома</strong><p>Практичные товары для быта, кухни и уюта.</p></article>
+        <article><span>03</span><strong>Техника</strong><p>Гаджеты, аксессуары и электроника для работы и отдыха.</p></article>
+      </section>
+
+      <section class="catalog-section" id="catalog">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Каталог</p>
+            <h2>Все предложения</h2>
+          </div>
+          <p>Данные загружаются из файла <code>products.json</code>.</p>
+        </div>
+
+        <div class="toolbar" aria-label="Фильтры каталога">
+          <label class="search">
+            <span>Поиск</span>
+            <input id="searchInput" type="search" placeholder="Название, магазин, категория" />
+          </label>
+          <div class="category-tabs" id="categoryTabs" aria-label="Категории"></div>
+        </div>
+
+        <div class="catalog-grid" id="catalogGrid" aria-live="polite"></div>
+        <p class="empty-state" id="emptyState" hidden>Ничего не найдено. Попробуйте другой запрос.</p>
+      </section>
+
+      <section class="disclosure" id="disclosure">
+        <div>
+          <p class="eyebrow">Важно</p>
+          <h2>Партнерское раскрытие</h2>
+        </div>
+        <p>Некоторые ссылки на этом сайте являются партнерскими. Если вы переходите по такой ссылке и совершаете покупку, владелец сайта может получить комиссию. Для покупателя цена обычно не меняется.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>LinkMarket</span>
+      <span>Обновляйте товары в <code>products.json</code></span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

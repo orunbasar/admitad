@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Беспроводные наушники с шумоподавлением",
+    "category": "Электроника",
+    "store": "AliExpress",
+    "price": "от 12 990 ₸",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
+    "description": "Компактная модель для музыки, звонков и поездок.",
+    "link": "https://ad.admitad.com/g/ВАША_ССЫЛКА"
+  },
+  {
+    "title": "Органайзер для кухни",
+    "category": "Дом",
+    "store": "Магазин партнера",
+    "price": "от 4 490 ₸",
+    "image": "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80",
+    "description": "Помогает аккуратно хранить специи, посуду и мелочи.",
+    "link": "https://ad.admitad.com/g/ВАША_ССЫЛКА"
+  },
+  {
+    "title": "Умные часы для тренировок",
+    "category": "Спорт",
+    "store": "AliExpress",
+    "price": "от 18 900 ₸",
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80",
+    "description": "Пульс, шаги, уведомления и режимы активности.",
+    "link": "https://ad.admitad.com/g/ВАША_ССЫЛКА"
+  },
+  {
+    "title": "Набор ухода за кожей",
+    "category": "Красота",
+    "store": "Beauty Store",
+    "price": "от 9 700 ₸",
+    "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=80",
+    "description": "Базовый уход для ежедневного использования.",
+    "link": "https://ad.admitad.com/g/ВАША_ССЫЛКА"
+  },
+  {
+    "title": "Городской рюкзак",
+    "category": "Одежда",
+    "store": "Fashion Partner",
+    "price": "от 15 500 ₸",
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80",
+    "description": "Удобный рюкзак для ноутбука, учебы и поездок.",
+    "link": "https://ad.admitad.com/g/ВАША_ССЫЛКА"
+  },
+  {
+    "title": "Портативная колонка",
+    "category": "Электроника",
+    "store": "Tech Partner",
+    "price": "от 10 900 ₸",
+    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=900&q=80",
+    "description": "Компактный звук для дома, дачи и прогулок.",
+    "link": "https://ad.admitad.com/g/ВАША_ССЫЛКА"
+  },
+  {
+    "title": "Настольная лампа для рабочего места",
+    "category": "Дом",
+    "store": "Home Partner",
+    "price": "от 8 300 ₸",
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80",
+    "description": "Мягкий свет для чтения, работы и учебы.",
+    "link": "https://ad.admitad.com/g/ВАША_ССЫЛКА"
+  },
+  {
+    "title": "Чемодан для путешествий",
+    "category": "Путешествия",
+    "store": "Travel Store",
+    "price": "от 24 900 ₸",
+    "image": "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=900&q=80",
+    "description": "Легкий чемодан с колесами для коротких и длинных поездок.",
+    "link": "https://ad.admitad.com/g/ВАША_ССЫЛКА"
+  }
+]
