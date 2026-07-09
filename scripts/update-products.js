@@ -1,18 +1,11 @@
+const https = require("https");
+const csv = require("csv-parser");
 
-const fs = require("fs");
-
-const products = [
-  {
-    title: "Тестовый товар",
-    category: "Тест",
-    store: "Admitad",
-    price: "19.99 USD",
-    image: "https://picsum.photos/600/400",
-    description: "Если вы видите этот товар, GitHub Actions работают.",
-    link: "https://google.com"
-  }
-];
-
-fs.writeFileSync("products.json", JSON.stringify(products, null, 2));
-
-console.log("products.json обновлен");
+https.get(process.env.ADMITAD_FEED_URL, (res) => {
+  res
+    .pipe(csv())
+    .on("headers", (headers) => {
+      console.log(headers);
+      process.exit(0);
+    });
+});
