@@ -2,17 +2,21 @@ name: Update products
 
 on:
   workflow_dispatch:
+
   schedule:
     - cron: '0 3 * * *'
 
 jobs:
+
   update:
+
     runs-on: ubuntu-latest
 
     permissions:
       contents: write
 
     steps:
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
@@ -25,10 +29,10 @@ jobs:
         env:
           ADMITAD_FEED_URL: ${{ secrets.ADMITAD_FEED_URL }}
 
-      - name: Commit changes
+      - name: Commit
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add products.json
-          git diff --cached --quiet || git commit -m "Update products"
+          git diff --cached --quiet || git commit -m "Auto update"
           git push
