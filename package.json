@@ -1,4 +1,7 @@
 {
+  "name": "admitad-site",
+  "version": "1.0.0",
+  "private": true,
   "dependencies": {
     "csv-parser": "^3.2.0"
   }
