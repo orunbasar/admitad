@@ -47,7 +47,7 @@ https.get(url, (res) => {
             title: row.title,
             description: row.description,
             image: row.image_link,
-            link: row.link,
+            link: `https://aliexpress.com/item/${row.id}.html`,
             price: finalPrice,
             oldPrice: row.price,
             category: row.product_type,
