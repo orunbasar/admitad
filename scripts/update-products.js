@@ -1,21 +1,28 @@
 const https = require("https");
-const csv = require("csv-parser");
 
-https.get(process.env.ADMITAD_FEED_URL, res => {
+const url = process.env.ADMITAD_FEED_URL;
 
-    const parser = csv({
-        separator: "\t"
+console.log("URL:", url);
+
+https.get(url, (res) => {
+
+    console.log("STATUS:", res.statusCode);
+    console.log("HEADERS:", res.headers);
+
+    let bytes = 0;
+
+    res.on("data", chunk => {
+        bytes += chunk.length;
+
+        if (bytes <= 500) {
+            console.log(chunk.toString());
+        }
     });
 
-    parser.on("headers", headers => {
-        console.log(headers);
+    res.on("end", () => {
+        console.log("Получено байт:", bytes);
     });
 
-    parser.on("data", row => {
-        console.log(JSON.stringify(row, null, 2));
-        process.exit(0);
-    });
-
-    res.pipe(parser);
-
+}).on("error", err => {
+    console.error(err);
 });
