@@ -4,12 +4,18 @@ const fs = require("fs");
 
 const url = process.env.ADMITAD_FEED_URL;
 
+if (!url) {
+    console.error("ADMITAD_FEED_URL is not задан.");
+    process.exit(1);
+}
+
 const products = [];
+let finished = false;
 
 https.get(url, (res) => {
 
     if (res.statusCode !== 200) {
-        console.error("HTTP", res.statusCode);
+        console.error("HTTP:", res.statusCode);
         process.exit(1);
     }
 
@@ -17,9 +23,12 @@ https.get(url, (res) => {
 
     parser.on("data", (row) => {
 
+        if (finished) return;
+
+        const rawPrice = row.sale_price || row.price || "";
+
         const price = parseFloat(
-            String(row.sale_price || row.price || "")
-                .replace(/[^\d.]/g, "")
+            String(rawPrice).replace(/[^\d.]/g, "")
         );
 
         if (isNaN(price)) return;
@@ -30,36 +39,52 @@ https.get(url, (res) => {
             description: row.description,
             image: row.image_link,
             link: row.link,
-            price: row.sale_price || row.price,
+            price: rawPrice,
             category: row.product_type || "AliExpress",
             store: "AliExpress"
         });
 
-        if (products.length === 50) {
+        if (products.length % 10 === 0) {
+            console.log(`Найдено ${products.length} товаров`);
+        }
 
-            console.log("Нашли 50 товаров.");
+        if (products.length >= 50) {
+
+            finished = true;
 
             fs.writeFileSync(
                 "products.json",
                 JSON.stringify(products, null, 2)
             );
 
-            parser.end();
+            console.log("Сохранено 50 товаров.");
+
+            parser.destroy();
             res.destroy();
         }
-
     });
 
     parser.on("end", () => {
-        console.log("Готово");
-        process.exit(0);
+
+        if (!finished) {
+
+            fs.writeFileSync(
+                "products.json",
+                JSON.stringify(products, null, 2)
+            );
+
+            console.log(`Файл закончился. Найдено ${products.length} товаров.`);
+        }
     });
 
-    parser.on("error", (err) => {
+    parser.on("error", err => {
         console.error(err);
         process.exit(1);
     });
 
     res.pipe(parser);
 
-}).on("error", console.error);
+}).on("error", err => {
+    console.error(err);
+    process.exit(1);
+});
