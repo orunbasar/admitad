@@ -26,12 +26,11 @@ https.get(url, (res) => {
 
     parser.on("data", (row) => {
 
-        const salePrice = parseFloat(
-            String(row.sale_price || "")
-                .replace(/[^\d.]/g, "")
-        );
+    console.log(row);
+    process.exit(0);
 
-        const price = parseFloat(
+    const salePrice = parseFloat(
+        ...
             String(row.price || "")
                 .replace(/[^\d.]/g, "")
         );
