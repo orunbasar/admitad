@@ -1,36 +1,3 @@
-name: Update products
-
-on:
-  workflow_dispatch:
-
-  schedule:
-    - cron: '0 3 * * *'
-
-jobs:
-  update:
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - run: npm install
-
-      - run: node scripts/test-api.js
-        env:
-          ADMITAD_CLIENT_ID: ${{ secrets.ADMITAD_CLIENT_ID }}
-          ADMITAD_CLIENT_SECRET: ${{ secrets.ADMITAD_CLIENT_SECRET }}
-
-      - name: Commit
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add products.json
-          git diff --cached --quiet || git commit -m "Auto update"
-          git push
+- run: node scripts/update-products.js
+  env:
+    ADMITAD_FEED_URL: ${{ secrets.ADMITAD_FEED_URL }}
