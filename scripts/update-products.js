@@ -8,12 +8,17 @@ const products = [];
 
 https.get(url, (res) => {
 
+    if (res.statusCode !== 200) {
+        console.error("HTTP", res.statusCode);
+        process.exit(1);
+    }
+
     const parser = csv();
 
     parser.on("data", (row) => {
 
         const price = parseFloat(
-            String(row.sale_price || row.price)
+            String(row.sale_price || row.price || "")
                 .replace(/[^\d.]/g, "")
         );
 
@@ -30,7 +35,8 @@ https.get(url, (res) => {
             store: "AliExpress"
         });
 
-        if (products.length >= 50) {
+        if (products.length === 50) {
+
             console.log("Нашли 50 товаров.");
 
             fs.writeFileSync(
@@ -38,16 +44,22 @@ https.get(url, (res) => {
                 JSON.stringify(products, null, 2)
             );
 
-            // ВАЖНО: сразу закрываем соединение
+            parser.end();
             res.destroy();
-            parser.destroy();
         }
+
     });
 
-    parser.on("close", () => {
-        console.log("Готово.");
+    parser.on("end", () => {
+        console.log("Готово");
+        process.exit(0);
+    });
+
+    parser.on("error", (err) => {
+        console.error(err);
+        process.exit(1);
     });
 
     res.pipe(parser);
 
-});
+}).on("error", console.error);
