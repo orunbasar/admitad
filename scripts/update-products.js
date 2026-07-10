@@ -26,13 +26,12 @@ https.get(url, (res) => {
 
     parser.on("data", (row) => {
 
-    console.log(row);
-    process.exit(0);
+        const salePrice = parseFloat(
+            String(row.sale_price || "").replace(/[^\d.]/g, "")
+        );
 
-    const salePrice = parseFloat(
-        ...
-            String(row.price || "")
-                .replace(/[^\d.]/g, "")
+        const price = parseFloat(
+            String(row.price || "").replace(/[^\d.]/g, "")
         );
 
         const finalPrice = !isNaN(salePrice)
@@ -40,7 +39,6 @@ https.get(url, (res) => {
             : price;
 
         if (isNaN(finalPrice)) return;
-        if (finalPrice < 10 || finalPrice > 25) return;
 
         products.push({
             id: row.id,
@@ -67,30 +65,26 @@ https.get(url, (res) => {
 
             parser.destroy();
             res.destroy();
-
-            process.exit(0);
         }
 
     });
 
-    parser.on("end", () => {
+    parser.on("close", () => {
 
-        fs.writeFileSync(
-            "products.json",
-            JSON.stringify(products, null, 2)
-        );
+        if (!fs.existsSync("products.json")) {
 
-        console.log(`Готово. Найдено ${products.length} товаров.`);
+            fs.writeFileSync(
+                "products.json",
+                JSON.stringify(products, null, 2)
+            );
+
+            console.log(`Готово. Найдено ${products.length} товаров.`);
+        }
+
     });
 
-    parser.on("error", (err) => {
-        console.error(err);
-        process.exit(1);
-    });
+    parser.on("error", console.error);
 
     res.pipe(parser);
 
-}).on("error", (err) => {
-    console.error(err);
-    process.exit(1);
-});
+}).on("error", console.error);
